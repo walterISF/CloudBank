@@ -1,8 +1,11 @@
 package br.com.cloudbank.inacio.walter.cloudbank;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ListaFaturas extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,13 +73,41 @@ public class ListaFaturas extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Deseja Bloquear seu Cartão?");
+        builder.setMessage("O seu cartão será bloqueado imediatamente após a confirmação.");
+
+
+        //Funcao de click da mensagem de alerta para bloqueio de cartoes "SIM"
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(ListaFaturas.this, "Seu cartão foi bloueado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Funcao de click da mensagem de alerta para bloqueio de cartoes "NAO"
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(ListaFaturas.this, "Funcao abortada", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_minhaConta) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_bloquear) {
 
-        } else if (id == R.id.nav_slideshow) {
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        } else if (id == R.id.nav_cartoes) {
+            Intent retorno = new Intent(ListaFaturas.this, Cartoes.class);
+            startActivity(retorno);
+            this.finish();
+        } else if (id == R.id.nav_sair){
 
         }
 
