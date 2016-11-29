@@ -20,10 +20,17 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
 
     private final List<ListaCartoes> cartoesList;
     private final Context context;
+    private final OnItemClickListener listener;
 
-    public ListaAdapter(Context context, List<ListaCartoes> cartoesList) {
+
+    public ListaAdapter(Context context, List<ListaCartoes> cartoesList, OnItemClickListener listener) {
         this.cartoesList = cartoesList;
         this.context = context;
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(ListaCartoes item);
     }
 
     @Override
@@ -36,6 +43,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ListaAdapter.ViewHolder holder, int position) {
+        holder.bind(cartoesList.get(position), listener);
         ListaCartoes cartao = cartoesList.get(position);
         holder.tvConta.setText(cartao.getConta());
         holder.tvNome.setText(cartao.getNome());
@@ -62,5 +70,17 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
 
         }
 
+        public void bind(final ListaCartoes item, final OnItemClickListener listener) {
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+        }
+
     }
+
+
+
 }

@@ -11,4 +11,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="minha_conta">Minha Conta</string>
+    <string name="bloquear">Bloquear Cartão</string>
+    <string name="sair">Sair</string>
 </resources>
