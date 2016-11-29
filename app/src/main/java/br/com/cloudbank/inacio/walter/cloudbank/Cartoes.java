@@ -39,7 +39,7 @@ public class Cartoes extends AppCompatActivity {
     }
 
     private void createFakeCars() {
-        for(int i = 0; i < 100; i ++) {
+        for(int i = 0; i < 2; i ++) {
             ListaCartoes sampleCar = new ListaCartoes();
             sampleCar.setNome("Nome " + i);
             sampleCar.setConta("Conta: " + i);

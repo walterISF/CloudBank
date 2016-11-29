@@ -41,7 +41,7 @@
             <EditText
                 android:id="@+id/tvNome"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_below="@id/logoMenu"
                 android:hint="Email"
                 android:textSize="20sp"
@@ -50,7 +50,8 @@
                 android:textStyle="normal"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_account_circle_black_24dp"/>
+                android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                android:background="@drawable/cor_campos"/>
 
             <View
                 android:id="@+id/vlinha"
@@ -61,14 +62,15 @@
             <EditText
                 android:id="@+id/tvSenha"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_below="@id/vlinha"
                 android:textColorHint="@color/cinza"
                 android:hint="Senha"
                 android:textSize="20sp"
                 android:drawablePadding="10dp"
                 android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:background="@drawable/cor_campos"/>
 
         </LinearLayout>
 
