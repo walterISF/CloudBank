@@ -8,4 +8,7 @@
     <string name="local">Americanas</string>
     <string name="preco">R$ 128,90</string>
     <string name="data">ONTEM</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

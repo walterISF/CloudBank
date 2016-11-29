@@ -1,11 +1,14 @@
 package br.com.cloudbank.inacio.walter.cloudbank;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -48,11 +51,16 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
 
         protected TextView tvNome;
         protected TextView tvConta;
+        protected RelativeLayout rvConta;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.tvConta = (TextView)itemView.findViewById(R.id.usuario_cartao);
             this.tvNome = (TextView)itemView.findViewById(R.id.conta_cartao);
+            this.rvConta = (RelativeLayout)itemView.findViewById(R.id.conta);
+
+
         }
+
     }
 }
