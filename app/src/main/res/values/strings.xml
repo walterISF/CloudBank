@@ -4,4 +4,8 @@
     <string name="title_activity_login">Login</string>
     <string name="recuperar_senha">Recuperar Senha</string>
     <string name="title_activity_cartoes">Cartoes</string>
+    <string name="title_activity_lista_faturas">Lista_faturas</string>
+    <string name="local">Americanas</string>
+    <string name="preco">R$ 128,90</string>
+    <string name="data">ONTEM</string>
 </resources>

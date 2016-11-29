@@ -25,6 +25,10 @@
         <activity
             android:name=".Cartoes"
             android:label="@string/title_activity_cartoes"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Lista_faturas"
+            android:label="@string/title_activity_lista_faturas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
