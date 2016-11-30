@@ -77,7 +77,6 @@ public class ListaFaturas extends AppCompatActivity
         builder.setTitle("Deseja Bloquear seu Cartão?");
         builder.setMessage("O seu cartão será bloqueado imediatamente após a confirmação.");
 
-
         //Funcao de click da mensagem de alerta para bloqueio de cartoes "SIM"
         builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
@@ -97,7 +96,9 @@ public class ListaFaturas extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_minhaConta) {
-            // Handle the camera action
+            Intent minhaConta = new Intent(ListaFaturas.this, MinhaConta.class);
+            startActivity(minhaConta);
+
         } else if (id == R.id.nav_bloquear) {
 
             AlertDialog dialog = builder.create();
@@ -108,7 +109,7 @@ public class ListaFaturas extends AppCompatActivity
             startActivity(retorno);
             this.finish();
         } else if (id == R.id.nav_sair){
-
+            System.exit(0);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

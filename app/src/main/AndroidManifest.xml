@@ -29,7 +29,16 @@
         <activity
             android:name=".ListaFaturas"
             android:label="@string/title_activity_lista_faturas"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MinhaConta"
+            android:label="@string/title_activity_minha_conta"
+            android:parentActivityName=".ListaFaturas"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.cloudbank.inacio.walter.cloudbank.ListaFaturas" />
+        </activity>
     </application>
 
 </manifest>

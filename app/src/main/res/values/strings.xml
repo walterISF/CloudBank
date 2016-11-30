@@ -14,4 +14,9 @@
     <string name="minha_conta">Minha Conta</string>
     <string name="bloquear">Bloquear Cartão</string>
     <string name="sair">Sair</string>
+    <string name="title_activity_minha_conta">MinhaConta</string>
+    <string name="emailConta">walter.inacio@gmail.com.br</string>
+    <string name="cvConta">Conta</string>
+    <string name="telefoneConta">(11) 983768086</string>
+    <string name="senhaConta">Alterar Senha da Conta</string>
 </resources>
