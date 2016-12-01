@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,10 +18,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListaFaturas extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private List<ListaCartoes> cards = new ArrayList<ListaCartoes>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,27 @@ public class ListaFaturas extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        createFakeCars();
+
+
+
+        final RecyclerView rvFaturas = (RecyclerView) findViewById(R.id.rvFaturas);
+        rvFaturas.setLayoutManager(new LinearLayoutManager(this));
+        rvFaturas.setItemAnimator(new DefaultItemAnimator());
+        rvFaturas.setHasFixedSize(true);
+
+        ListaAdapter adapter;
+        //adapter = new ListaAdapter(this,cards, listener);
+        //rvCartoes.setAdapter(adapter);
+
+        rvFaturas.setAdapter(new AdapterFaturas(cards,this, new AdapterFaturas.OnItemClickListener() {
+            @Override
+            public void onItemClick(ListaCartoes item) {
+                Intent Lista = new Intent(ListaFaturas.this, DetalheFatura.class);
+                startActivity(Lista);
+            }
+        }));
     }
 
     @Override
@@ -93,6 +124,7 @@ public class ListaFaturas extends AppCompatActivity
             }
         });
 
+
         int id = item.getItemId();
 
         if (id == R.id.nav_minhaConta) {
@@ -115,5 +147,14 @@ public class ListaFaturas extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void createFakeCars() {
+        for(int i = 0; i < 2; i ++) {
+            ListaCartoes sampleCar = new ListaCartoes();
+            sampleCar.setNome("Nome " + i);
+            sampleCar.setConta("Conta: " + i);
+            cards.add(sampleCar);
+        }
     }
 }

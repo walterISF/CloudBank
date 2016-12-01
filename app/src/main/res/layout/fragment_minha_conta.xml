@@ -8,12 +8,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.com.cloudbank.inacio.walter.cloudbank.MinhaContaFragment"
-    tools:showIn="@layout/activity_minha_conta">
+    tools:showIn="@layout/activity_minha_conta"
+    >
 
     <android.support.v7.widget.CardView
         android:id="@+id/dadosConta"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp">
 
 
         <TableLayout
@@ -22,7 +24,8 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin">
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:stretchColumns="0,1">
 
             <TableRow
                 android:paddingBottom="10dp"
@@ -82,5 +85,81 @@
 
 
     </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/dadosCartao"
+        android:layout_below="@id/dadosConta"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:clickable="true">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:stretchColumns="0,1">
+
+            <TableRow
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="@string/tvCartao"
+                    android:paddingBottom="16dp"/>
+            </TableRow>
+
+            <TableRow
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/vencimentoFatura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vencimento"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+                    android:textSize="18dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/limiteCartao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/limiteC"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+            </TableRow>
+
+            <TableRow
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/senhaCartao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/senhaCartao"
+                    android:textSize="18dp"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+            </TableRow>
+
+        </TableLayout>
+
+
+
+
+    </android.support.v7.widget.CardView>
+
 
 </RelativeLayout>

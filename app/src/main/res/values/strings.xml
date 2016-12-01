@@ -19,4 +19,16 @@
     <string name="cvConta">Conta</string>
     <string name="telefoneConta">(11) 983768086</string>
     <string name="senhaConta">Alterar Senha da Conta</string>
+    <string name="tvCartao">Cartão</string>
+    <string name="vencimento">Vencimento da Fatura</string>
+    <string name="limiteC">Limite do Cartão</string>
+    <string name="senhaCartao">Senha do Cartão</string>
+    <string name="title_activity_fatura_detalhe">FaturaDetalhe</string>
+    <string name="API_KEY">AIzaSyCdRMu3chQszIeihxsRR6THF-o7Gxw-sq0</string>
+    <string name="location_permission_denied">Permissão Negada</string>
+    <string name="permission_required_toast">Permissão Requerida</string>
+    <string name="permission_rationale_location">Permissão para Rotacionar Local</string>
+    <string name="title_activity_detalhe_fatura">Detalhe da Fatura</string>
+    <string name="title_activity_mapa">Mapa</string>
+    <string name="btnDenincia">Denunciar Compra</string>
 </resources>

@@ -1,5 +1,6 @@
 package br.com.cloudbank.inacio.walter.cloudbank;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,8 +23,21 @@ public class Apresentacao extends AppCompatActivity implements Runnable {
     @Override
     public void run() {
 
-        Intent it = new Intent(this, Login.class);
-        startActivity(it);
-        finish();
+        //Lista de permissoes necessárias
+        String permissions[] = new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+        };
+
+
+        //VALIDA LISTA DE PERMISSOES
+        boolean ok = PermissionUtils.validate(this, 0, permissions);
+        if(ok) {
+            Intent it = new Intent(this, Login.class);
+            startActivity(it);
+            finish();
+        }
     }
 }

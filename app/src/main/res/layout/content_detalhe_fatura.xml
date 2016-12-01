@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_detalhe_fatura"
+    tools:context="br.com.cloudbank.inacio.walter.cloudbank.DetalheFatura">
+    
+    <TextView
+        android:id="@+id/precoCompra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="R$ 25,00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/estabelecimentoCompra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mc Donalds Inc"
+        android:textSize="25sp"
+        android:layout_marginBottom="10dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/precoCompra"/>
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/map"
+        tools:context=".DetalheFatura"
+        android:layout_marginBottom="20dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_below="@id/estabelecimentoCompra"/>
+
+
+    <Button
+        android:id="@+id/btnDeninciar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/btnDenincia"
+        android:layout_below="@id/map"
+        android:textColor="@color/branco"
+        android:background="@color/colorPrimaryDark"/>
+
+</RelativeLayout>
