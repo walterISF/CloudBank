@@ -12,7 +12,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="minha_conta">Minha Conta</string>
-    <string name="bloquear">Bloquear Cartão</string>
+    <string name="cancelar">Cancelar Cartão</string>
     <string name="sair">Sair</string>
     <string name="title_activity_minha_conta">MinhaConta</string>
     <string name="emailConta">walter.inacio@gmail.com.br</string>

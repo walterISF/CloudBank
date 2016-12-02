@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class AdapterFaturas extends RecyclerView.Adapter<AdapterFaturas.ViewHolder> {
 
-    private final List<ListaCartoes> cartoesList;
+    private final List<ListaFaturas> faturas;
     private final Context context;
     private final OnItemClickListener listener;
 
-    public AdapterFaturas(List<ListaCartoes> cartoesList, Context context, OnItemClickListener listener) {
-        this.cartoesList = cartoesList;
+    public AdapterFaturas(List<ListaFaturas> faturas, Context context, OnItemClickListener listener) {
+        this.faturas = faturas;
         this.context = context;
         this.listener = listener;
     }
@@ -34,16 +34,15 @@ public class AdapterFaturas extends RecyclerView.Adapter<AdapterFaturas.ViewHold
 
     @Override
     public void onBindViewHolder(AdapterFaturas.ViewHolder holder, int position) {
-        holder.bind(cartoesList.get(position), listener);
-        ListaCartoes cartao = cartoesList.get(position);
-        holder.tvLocal.setText(cartao.getNome());
-        holder.tvPreco.setText(cartao.getNome());
-        holder.tvData.setText(cartao.getNome());
+        holder.bind(faturas.get(position), listener);
+        ListaFaturas fatura = faturas.get(position);
+        //holder.tvLocal.setText(fatura.getNome());
+
     }
 
     @Override
     public int getItemCount() {
-        return cartoesList.size();
+        return faturas.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -61,7 +60,7 @@ public class AdapterFaturas extends RecyclerView.Adapter<AdapterFaturas.ViewHold
 
         }
 
-        public void bind(final ListaCartoes item, final OnItemClickListener listener) {
+        public void bind(final ListaFaturas item, final OnItemClickListener listener) {
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
@@ -72,6 +71,6 @@ public class AdapterFaturas extends RecyclerView.Adapter<AdapterFaturas.ViewHold
     }
 
     public interface OnItemClickListener{
-        void onItemClick(ListaCartoes item);
+        void onItemClick(ListaFaturas item);
     }
 }

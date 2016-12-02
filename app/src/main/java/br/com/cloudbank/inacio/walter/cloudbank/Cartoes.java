@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +29,10 @@ public class Cartoes extends AppCompatActivity {
         rvCartoes.setItemAnimator(new DefaultItemAnimator());
         rvCartoes.setHasFixedSize(true);
 
-        ListaAdapter adapter;
-        //adapter = new ListaAdapter(this,cards, listener);
-        //rvCartoes.setAdapter(adapter);
-
-        rvCartoes.setAdapter(new ListaAdapter(this,cards, new ListaAdapter.OnItemClickListener() {
+        rvCartoes.setAdapter(new AdapterCartoes(this,cards, new AdapterCartoes.OnItemClickListener() {
             @Override
             public void onItemClick(ListaCartoes item) {
-                Intent Lista = new Intent(Cartoes.this, ListaFaturas.class);
+                Intent Lista = new Intent(Cartoes.this, Faturas.class);
                 startActivity(Lista);
                 finish();
             }
@@ -45,11 +40,12 @@ public class Cartoes extends AppCompatActivity {
 
     }
 
+
     private void createFakeCars() {
         for(int i = 0; i < 2; i ++) {
             ListaCartoes sampleCar = new ListaCartoes();
-            sampleCar.setNome("Nome " + i);
-            sampleCar.setConta("Conta: " + i);
+            sampleCar.setNumero("Nome " + i);
+            sampleCar.setNumeroSeguranca("Conta: " + i);
             cards.add(sampleCar);
         }
     }

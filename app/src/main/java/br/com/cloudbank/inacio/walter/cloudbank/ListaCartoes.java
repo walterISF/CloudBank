@@ -1,26 +1,85 @@
 package br.com.cloudbank.inacio.walter.cloudbank;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * Created by aluno on 24/11/16.
  */
-public class ListaCartoes {
+public class ListaCartoes implements Serializable {
 
-    private String nome;
-    private String conta;
+    private String numero;
+    private String numeroSeguranca;
+    private Float limiteTotal;
+    private Float limiteUsado;
+    private Date dataExpiracao;
+    private String bandeira;
 
-    public String getConta() {
-        return conta;
+
+
+    //GUETTERS
+
+    public String getNumero() {
+        return numero;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNumeroSeguranca() {
+        return numeroSeguranca;
     }
 
-    public void setConta(String conta) {
-        this.conta = conta;
+    public Float getLimiteTotal() { return limiteTotal; }
+
+    public Float getLimiteUsado() {  return limiteUsado; }
+
+    public Date getDataExpiracao() { return dataExpiracao; }
+
+    public String getBandeira() { return bandeira;  }
+
+
+
+    //SETTERS
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNumeroSeguranca(String numeroSeguranca) {
+        this.numeroSeguranca = numeroSeguranca;
+    }
+
+    public void setLimiteTotal(Float limiteTotal) {
+        this.limiteTotal = limiteTotal;
+    }
+
+    public void setLimiteUsado(Float limiteUsado) {
+        this.limiteUsado = limiteUsado;
+    }
+
+    public void setDataExpiracao(Date dataExpiracao) {
+        this.dataExpiracao = dataExpiracao;
+    }
+
+    public void setBandeira(String bandeira) {
+        this.bandeira = bandeira;
+    }
+
+
+    //Equals
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    //To String
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+
+    //Hash Code
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }
