@@ -44,7 +44,8 @@
         tools:context=".DetalheFatura"
         android:layout_marginBottom="20dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_below="@id/estabelecimentoCompra"/>
+        android:layout_below="@id/estabelecimentoCompra"
+        />
 
 
     <Button
