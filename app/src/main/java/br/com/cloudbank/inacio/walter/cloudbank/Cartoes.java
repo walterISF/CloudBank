@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cartoes extends AppCompatActivity {
+public class Cartoes extends AppCompatActivity implements CartoesCallback {
 
 
     private List<ListaCartoes> cards = new ArrayList<ListaCartoes>();
@@ -51,4 +51,9 @@ public class Cartoes extends AppCompatActivity {
     }
 
 
+    @Override
+    public void callback(List<Cartoes> cartoesList) {
+        Intent cartoes = new Intent();
+        startActivity(cartoes);
+    }
 }
