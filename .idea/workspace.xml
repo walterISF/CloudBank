@@ -57,14 +57,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07b0ebd6-3a0a-4d72-85e4-489581463be2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/cloudbank/inacio/walter/cloudbank/CartoesCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/cloudbank/inacio/walter/cloudbank/HttpHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/cloudbank/inacio/walter/cloudbank/TaskGetListaCartoes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/br/com/cloudbank/inacio/walter/cloudbank/Cartoes.java" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/cloudbank/inacio/walter/cloudbank/Cartoes.java" />
-    </list>
+    <list default="true" id="07b0ebd6-3a0a-4d72-85e4-489581463be2" name="Default" comment="" />
     <ignored path="CloudBank.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -142,8 +135,8 @@
       <file leaf-file-name="TaskGetListaCartoes.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/cloudbank/inacio/walter/cloudbank/TaskGetListaCartoes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7635727">
-              <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.21190894">
+              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2998,8 +2991,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/cloudbank/inacio/walter/cloudbank/TaskGetListaCartoes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7635727">
-          <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.21190894">
+          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
