@@ -12,7 +12,7 @@ public class ListaCartoes implements Serializable {
     private String numeroSeguranca;
     private Float limiteTotal;
     private Float limiteUsado;
-    private Date dataExpiracao;
+    private String dataExpiracao;
     private String bandeira;
 
 
@@ -31,7 +31,7 @@ public class ListaCartoes implements Serializable {
 
     public Float getLimiteUsado() {  return limiteUsado; }
 
-    public Date getDataExpiracao() { return dataExpiracao; }
+    public String getDataExpiracao() { return dataExpiracao; }
 
     public String getBandeira() { return bandeira;  }
 
@@ -55,7 +55,7 @@ public class ListaCartoes implements Serializable {
         this.limiteUsado = limiteUsado;
     }
 
-    public void setDataExpiracao(Date dataExpiracao) {
+    public void setDataExpiracao(String dataExpiracao) {
         this.dataExpiracao = dataExpiracao;
     }
 

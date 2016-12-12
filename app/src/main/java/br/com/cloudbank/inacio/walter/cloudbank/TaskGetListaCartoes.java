@@ -5,27 +5,26 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.gson.Gson;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by aluno on 07/12/16.
  */
-public class TaskGetListaCartoes extends AsyncTask<Void, Void,List<Cartoes>> {
+public class TaskGetListaCartoes extends AsyncTask<Void, Void,List<ListaCartoes>> {
 
     private final String URLResquest;
     private final Context context;
-    private final CartoesCallback callback;
+    private final CartaoCallback callback;
     private ProgressDialog progressDialog;
     private HttpHandler httpHandler;
+    private List<ListaCartoes> listaArray = new ArrayList<ListaCartoes>();
 
-    public TaskGetListaCartoes(String urlResquest, Context context, CartoesCallback callback) {
+    public TaskGetListaCartoes(Context context, CartaoCallback callback, String urlResquest) {
         this.URLResquest = urlResquest;
         this.context = context;
         this.callback = callback;
@@ -37,30 +36,44 @@ public class TaskGetListaCartoes extends AsyncTask<Void, Void,List<Cartoes>> {
     }
 
     @Override
-    protected List<Cartoes> doInBackground(Void... params) {
+    protected List<ListaCartoes> doInBackground(Void... params) {
 
         httpHandler = new HttpHandler();
-        Cartoes cartao = new Cartoes();
-        Object retorno = null;
         try {
-            String result = httpHandler.doHttpsRequest(URLResquest);
+            String result = httpHandler.doHttpRequest(URLResquest);
             if(result!=null){
-                Gson gson = new Gson();
-                retorno = gson.fromJson(result, (Type) cartao);
+                JSONArray json = new JSONArray(result);
+                return createListCartoes(json);
+
             }
             else{
                 throw new Exception("Impossivel capturar resultado.");
             }
         } catch (Exception e) {
             Log.i("Erro","TaskGETListaCartoes -- Sem conexão com o servidor.");
+            return null;
         }
 
-        return (List<Cartoes>) retorno;
     }
 
     @Override
-    protected void onPostExecute(List<Cartoes> cartoes) {
+    protected void onPostExecute(List<ListaCartoes> cartoes) {
         progressDialog.dismiss();
-        this.callback.callback(cartoes);
+        this.callback.cartaoCallback(cartoes);
+    }
+
+    private List<ListaCartoes> createListCartoes(JSONArray itensCartao) throws JSONException {
+        ListaCartoes cartao = new ListaCartoes();
+        for(int i = 0; i < itensCartao.length(); i ++) {
+            JSONObject row = itensCartao.getJSONObject(i);
+            cartao.setNumero(row.getString("numero"));
+            cartao.setNumeroSeguranca(row.getString("securityNumber"));
+            cartao.setLimiteTotal(Float.parseFloat(row.getString("totalLim")));
+            cartao.setLimiteUsado(Float.parseFloat(row.getString("usedLim")));
+            cartao.setDataExpiracao(row.getString("expiration"));
+            cartao.setBandeira(row.getString("brand"));
+            listaArray.add(cartao);
+        }
+        return listaArray;
     }
 }

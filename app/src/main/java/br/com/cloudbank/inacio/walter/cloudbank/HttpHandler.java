@@ -1,9 +1,12 @@
 package br.com.cloudbank.inacio.walter.cloudbank;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -16,20 +19,20 @@ public class HttpHandler {
     private final int connectionTimeOut = 15000;
     private String response;
 
-    public String doHttpsRequest(String URLRequest)throws Exception{
+    public String doHttpRequest(String URLRequest)throws Exception{
 
         int cont = 0;
         URL url;
 
         try{
             url = new URL(URLRequest);
-            HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setRequestMethod("GET");
             conn.setReadTimeout(readTimeOut);
             conn.setConnectTimeout(connectionTimeOut);
             conn.connect();
 
-            if(conn.getResponseCode() == HttpsURLConnection.HTTP_OK){
+            if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
                 cont=0;
                 InputStream is = conn.getInputStream();
                 this.response = getJSONFromInputStream(is);
@@ -37,7 +40,7 @@ public class HttpHandler {
             else{
                 if(cont<3){
                     cont++;
-                    doHttpsRequest(URLRequest);
+                    doHttpRequest(URLRequest);
                 }
                 else{
                     throw new Exception("Error, Impossible to connect with the URL");
@@ -48,7 +51,9 @@ public class HttpHandler {
         catch (IOException e) {
             if(cont<3){
                 cont++;
-                doHttpsRequest(URLRequest);
+                System.out.println("Response Code : " + e.getMessage());
+                doHttpRequest(URLRequest);
+
             }
             else{
                 throw new Exception("Error, Impossible to establish connection");

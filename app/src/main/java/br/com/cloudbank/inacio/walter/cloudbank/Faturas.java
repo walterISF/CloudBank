@@ -129,7 +129,7 @@ public class Faturas extends AppCompatActivity
             dialog.show();
 
         } else if (id == R.id.nav_cartoes) {
-            Intent retorno = new Intent(Faturas.this, Cartoes.class);
+            Intent retorno = new Intent(Faturas.this, Cartao.class);
             startActivity(retorno);
             this.finish();
         } else if (id == R.id.nav_sair){

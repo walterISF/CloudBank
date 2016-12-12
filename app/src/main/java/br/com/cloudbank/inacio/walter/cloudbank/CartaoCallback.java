@@ -5,6 +5,6 @@ import java.util.List;
 /**
  * Created by aluno on 07/12/16.
  */
-public interface CartoesCallback {
-    public void callback(List<Cartoes> cartoesList);
+public interface CartaoCallback {
+    public void cartaoCallback(List<ListaCartoes> cartoesList);
 }
