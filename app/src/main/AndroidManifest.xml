@@ -44,7 +44,7 @@
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Cartoes"
+            android:name=".Cartao"
             android:label="@string/title_activity_cartoes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

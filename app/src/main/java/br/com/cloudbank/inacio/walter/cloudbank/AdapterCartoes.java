@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class AdapterCartoes extends RecyclerView.Adapter<AdapterCartoes.ViewHold
         ListaCartoes cartao = cartoesList.get(position);
         holder.tvConta.setText(cartao.getNumero());
         holder.tvNome.setText(cartao.getNumeroSeguranca());
+        holder.fotoConta.setBackgroundResource(R.drawable.ic_logo_visa);
     }
 
     @Override
@@ -57,12 +59,14 @@ public class AdapterCartoes extends RecyclerView.Adapter<AdapterCartoes.ViewHold
         protected TextView tvNome;
         protected TextView tvConta;
         protected RelativeLayout rvConta;
+        protected ImageView fotoConta;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.tvConta = (TextView)itemView.findViewById(R.id.usuario_cartao);
             this.tvNome = (TextView)itemView.findViewById(R.id.conta_cartao);
             this.rvConta = (RelativeLayout)itemView.findViewById(R.id.conta);
+            this.fotoConta = (ImageView)itemView.findViewById(R.id.foto_conta);
 
 
         }

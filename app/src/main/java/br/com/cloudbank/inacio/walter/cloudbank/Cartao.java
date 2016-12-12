@@ -6,22 +6,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cartoes extends AppCompatActivity implements CartoesCallback {
+public class Cartao extends AppCompatActivity implements CartaoCallback {
 
-
-    private List<ListaCartoes> cards = new ArrayList<ListaCartoes>();
+    private List<ListaCartoes> listaArray = new ArrayList<ListaCartoes>();
+    private final String URLListaCartoes = "http://192.168.43.25:5050/card/get";
+    private TaskGetListaCartoes getListaCartoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cartoes);
 
-        createFakeCars();
-
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String id = bundle.getString("id");
 
 
         final RecyclerView rvCartoes = (RecyclerView) findViewById(R.id.minhaLista);
@@ -29,31 +32,23 @@ public class Cartoes extends AppCompatActivity implements CartoesCallback {
         rvCartoes.setItemAnimator(new DefaultItemAnimator());
         rvCartoes.setHasFixedSize(true);
 
-        rvCartoes.setAdapter(new AdapterCartoes(this,cards, new AdapterCartoes.OnItemClickListener() {
+        rvCartoes.setAdapter(new AdapterCartoes(this,listaArray, new AdapterCartoes.OnItemClickListener() {
             @Override
             public void onItemClick(ListaCartoes item) {
-                Intent Lista = new Intent(Cartoes.this, Faturas.class);
+                Intent Lista = new Intent(Cartao.this, Faturas.class);
                 startActivity(Lista);
                 finish();
             }
         }));
 
-    }
+        getListaCartoes = new TaskGetListaCartoes(this,this,URLListaCartoes+"?clientId="+id);
+        getListaCartoes.execute();
 
-
-    private void createFakeCars() {
-        for(int i = 0; i < 2; i ++) {
-            ListaCartoes sampleCar = new ListaCartoes();
-            sampleCar.setNumero("Nome " + i);
-            sampleCar.setNumeroSeguranca("Conta: " + i);
-            cards.add(sampleCar);
-        }
     }
 
 
     @Override
-    public void callback(List<Cartoes> cartoesList) {
-        Intent cartoes = new Intent();
-        startActivity(cartoes);
+    public void cartaoCallback(List<ListaCartoes> cartoesList) {
+        Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show();
     }
 }
