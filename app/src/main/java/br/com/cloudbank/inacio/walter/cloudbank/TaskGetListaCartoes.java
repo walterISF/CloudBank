@@ -5,10 +5,14 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,8 @@ public class TaskGetListaCartoes extends AsyncTask<Void, Void,List<ListaCartoes>
     private final CartaoCallback callback;
     private ProgressDialog progressDialog;
     private HttpHandler httpHandler;
-    private List<ListaCartoes> listaArray = new ArrayList<ListaCartoes>();
+    private List<ListaCartoes> listaDeCartoes = null;
+    private final Gson gson = new Gson();
 
     public TaskGetListaCartoes(Context context, CartaoCallback callback, String urlResquest) {
         this.URLResquest = urlResquest;
@@ -38,12 +43,13 @@ public class TaskGetListaCartoes extends AsyncTask<Void, Void,List<ListaCartoes>
     @Override
     protected List<ListaCartoes> doInBackground(Void... params) {
 
+        JSONArray novaLIsta = null;
         httpHandler = new HttpHandler();
         try {
             String result = httpHandler.doHttpRequest(URLResquest);
             if(result!=null){
-                JSONArray json = new JSONArray(result);
-                return createListCartoes(json);
+                novaLIsta = new JSONArray(result);
+                return createListCartoes(novaLIsta);
 
             }
             else{
@@ -51,9 +57,8 @@ public class TaskGetListaCartoes extends AsyncTask<Void, Void,List<ListaCartoes>
             }
         } catch (Exception e) {
             Log.i("Erro","TaskGETListaCartoes -- Sem conexão com o servidor.");
-            return null;
         }
-
+        return listaDeCartoes;
     }
 
     @Override
@@ -63,8 +68,10 @@ public class TaskGetListaCartoes extends AsyncTask<Void, Void,List<ListaCartoes>
     }
 
     private List<ListaCartoes> createListCartoes(JSONArray itensCartao) throws JSONException {
-        ListaCartoes cartao = new ListaCartoes();
+        List<ListaCartoes> listaArray = new ArrayList<ListaCartoes>();
+        ListaCartoes cartao;
         for(int i = 0; i < itensCartao.length(); i ++) {
+            cartao = new ListaCartoes();
             JSONObject row = itensCartao.getJSONObject(i);
             cartao.setNumero(row.getString("numero"));
             cartao.setNumeroSeguranca(row.getString("securityNumber"));

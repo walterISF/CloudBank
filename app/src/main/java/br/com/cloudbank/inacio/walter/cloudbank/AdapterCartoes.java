@@ -19,12 +19,14 @@ public class AdapterCartoes extends RecyclerView.Adapter<AdapterCartoes.ViewHold
     private final List<ListaCartoes> cartoesList;
     private final Context context;
     private final OnItemClickListener listener;
+    private String usuario;
 
 
-    public AdapterCartoes(Context context, List<ListaCartoes> cartoesList, OnItemClickListener listener) {
+    public AdapterCartoes(Context context, List<ListaCartoes> cartoesList, OnItemClickListener listener, String usuario) {
         this.cartoesList = cartoesList;
         this.context = context;
         this.listener = listener;
+        this.usuario = usuario;
     }
 
     public interface OnItemClickListener{
@@ -44,8 +46,14 @@ public class AdapterCartoes extends RecyclerView.Adapter<AdapterCartoes.ViewHold
         holder.bind(cartoesList.get(position), listener);
         ListaCartoes cartao = cartoesList.get(position);
         holder.tvConta.setText(cartao.getNumero());
-        holder.tvNome.setText(cartao.getNumeroSeguranca());
-        holder.fotoConta.setBackgroundResource(R.drawable.ic_logo_visa);
+        holder.tvNome.setText(usuario);
+        if(cartao.getBandeira().trim().toUpperCase().equals("VISA")){
+            holder.fotoConta.setBackgroundResource(R.drawable.ic_logo_visa);
+        }else
+        {
+            holder.fotoConta.setBackgroundResource(R.drawable.ic_logo_mastercard);
+        }
+
     }
 
     @Override
@@ -63,8 +71,8 @@ public class AdapterCartoes extends RecyclerView.Adapter<AdapterCartoes.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            this.tvConta = (TextView)itemView.findViewById(R.id.usuario_cartao);
-            this.tvNome = (TextView)itemView.findViewById(R.id.conta_cartao);
+            this.tvNome = (TextView)itemView.findViewById(R.id.usuario_cartao);
+            this.tvConta = (TextView)itemView.findViewById(R.id.conta_cartao);
             this.rvConta = (RelativeLayout)itemView.findViewById(R.id.conta);
             this.fotoConta = (ImageView)itemView.findViewById(R.id.foto_conta);
 

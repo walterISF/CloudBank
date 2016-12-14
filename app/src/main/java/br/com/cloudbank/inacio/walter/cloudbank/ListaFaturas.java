@@ -7,54 +7,78 @@ import java.io.Serializable;
  */
 public class ListaFaturas implements Serializable {
 
-    Long codigo;
-    Integer mesReferencia;
-    Boolean statusPagamento;
-    Integer diaFechamento;
-    Integer diaExpiracao;
+    private Float valor;
+    private String items;
+    private String place;
+    private Float installmentValue;
+    private Float latitude;
+    private Float longitude;
+    private Integer totalInstallment;
+    private Integer paidInstallment;
 
-
-    public Long getCodigo() {
-        return codigo;
+    public Float getValor() {
+        return valor;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setValor(Float valor) {
+        this.valor = valor;
     }
 
-    public Integer getMesReferencia() {
-        return mesReferencia;
+    public String getItems() {
+        return items;
     }
 
-    public void setMesReferencia(Integer mesReferencia) {
-        this.mesReferencia = mesReferencia;
+    public void setItems(String items) {
+        this.items = items;
     }
 
-    public Boolean getStatusPagamento() {
-        return statusPagamento;
+    public String getPlace() {
+        return place;
     }
 
-    public void setStatusPagamento(Boolean statusPagamento) {
-        this.statusPagamento = statusPagamento;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
-    public Integer getDiaFechamento() {
-        return diaFechamento;
+    public Float getInstallmentValue() {
+        return installmentValue;
     }
 
-    public void setDiaFechamento(Integer diaFechamento) {
-        this.diaFechamento = diaFechamento;
+    public void setInstallmentValue(Float installmentValue) {
+        this.installmentValue = installmentValue;
     }
 
-    public Integer getDiaExpiracao() {
-        return diaExpiracao;
+    public Float getLatitude() {
+        return latitude;
     }
 
-    public void setDiaExpiracao(Integer diaExpiracao) {
-        this.diaExpiracao = diaExpiracao;
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
     }
 
+    public Integer getTotalInstallment() {
+        return totalInstallment;
+    }
 
+    public void setTotalInstallment(Integer totalInstallment) {
+        this.totalInstallment = totalInstallment;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
+    }
+
+    public Integer getPaidInstallment() {
+        return paidInstallment;
+    }
+
+    public void setPaidInstallment(Integer paidInstallment) {
+        this.paidInstallment = paidInstallment;
+    }
 
 
 

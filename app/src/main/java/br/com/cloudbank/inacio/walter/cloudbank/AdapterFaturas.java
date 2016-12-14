@@ -36,7 +36,8 @@ public class AdapterFaturas extends RecyclerView.Adapter<AdapterFaturas.ViewHold
     public void onBindViewHolder(AdapterFaturas.ViewHolder holder, int position) {
         holder.bind(faturas.get(position), listener);
         ListaFaturas fatura = faturas.get(position);
-        //holder.tvLocal.setText(fatura.getNome());
+        holder.tvLocal.setText(fatura.getPlace());
+        holder.tvPreco.setText(fatura.getValor().toString());
 
     }
 

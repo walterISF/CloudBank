@@ -3,17 +3,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_minhaConta"
-            android:icon="@drawable/ic_account_circle_black_24dp"
-            android:title="@string/minha_conta" />
-        <item
             android:id="@+id/nav_bloquear"
             android:icon="@drawable/ic_block_black_24dp"
             android:title="@string/cancelar" />
-        <item
-            android:id="@+id/nav_cartoes"
-            android:icon="@drawable/ic_credit_card_black_24dp"
-            android:title="@string/title_activity_cartoes" />
         <item
             android:id="@+id/nav_sair"
             android:icon="@drawable/ic_exit_to_app_black_24dp"

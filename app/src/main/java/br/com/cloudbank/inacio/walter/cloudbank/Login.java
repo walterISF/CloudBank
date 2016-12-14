@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class Login extends AppCompatActivity implements LoginCallback {
 
     private TaskGetLogin taskGetLogin;
-    private final String URLLogin = "http://192.168.43.25:5050/client/auth";
+    private final String URLLogin = "http://172.16.131.6:5050/client/auth";
     private Context context;
     private String strEmail;
     private String strSenha;
@@ -34,8 +34,8 @@ public class Login extends AppCompatActivity implements LoginCallback {
             @Override
             public void onClick(View view) {
 
-                strEmail = email.getText().toString();
-                strSenha = senha.getText().toString();
+                strEmail = "allangera@hotmail.com";//email.getText().toString();
+                strSenha = "Aln3105";//senha.getText().toString();
 
                 taskGetLogin = new TaskGetLogin(URLLogin+"?email="+strEmail+"&senha="+strSenha,Login.this,Login.this);
 
@@ -54,13 +54,15 @@ public class Login extends AppCompatActivity implements LoginCallback {
 
         if(strEmail.equals(json.getString("email")) &&strSenha.equals(json.getString("senha"))){
             Intent telaCartao = new Intent(Login.this, Cartao.class);
-            String id;
+            String id,nome;
             id = json.getString("id");
+            nome = json.getString("nome");
             Bundle bundle = new Bundle();
             bundle.putString("id",id);
+            bundle.putString("nome",nome);
             telaCartao.putExtras(bundle);
             startActivity(telaCartao);
-            finish();
+            this.finish();
         }
         else{
             Toast.makeText(context, "Usuario e senha Invalidos", Toast.LENGTH_SHORT).show();

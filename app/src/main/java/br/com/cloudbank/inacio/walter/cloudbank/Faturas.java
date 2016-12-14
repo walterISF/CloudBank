@@ -13,17 +13,27 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Faturas extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FaturaCallback {
 
     private List<ListaFaturas> faturas = new ArrayList<ListaFaturas>();
+    private RecyclerView rvFaturas;
+    private String URLListaFaturas;
+    private TaskGetListaFaturas getListaFaturas;
+    private String numeroCartao;
+    private HttpHandler httpHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +51,21 @@ public class Faturas extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //createFakeCars();
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        numeroCartao = bundle.getString("numero");
 
 
-
-        final RecyclerView rvFaturas = (RecyclerView) findViewById(R.id.rvFaturas);
+        rvFaturas = (RecyclerView) findViewById(R.id.rvFaturas);
         rvFaturas.setLayoutManager(new LinearLayoutManager(this));
         rvFaturas.setItemAnimator(new DefaultItemAnimator());
         rvFaturas.setHasFixedSize(true);
+        URLListaFaturas = "http://172.16.131.6:5050/invoice/get?cardNumber="+numeroCartao+"&refMonth=11";
+        getListaFaturas = new TaskGetListaFaturas(URLListaFaturas,this,this);
+        getListaFaturas.execute();
 
 
-        rvFaturas.setAdapter(new AdapterFaturas(faturas,this, new AdapterFaturas.OnItemClickListener() {
-            @Override
-            public void onItemClick(ListaFaturas item) {
-                Intent Lista = new Intent(Faturas.this, DetalheFatura.class);
-                startActivity(Lista);
-            }
-        }));
     }
 
     @Override
@@ -104,7 +112,19 @@ public class Faturas extends AppCompatActivity
         builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(Faturas.this, "Seu cartão foi Cancelado", Toast.LENGTH_SHORT).show();
+                httpHandler = new HttpHandler();
+                try {
+                    String result = httpHandler.doHttpRequest("http://172.16.131.6:5050/card/cancel?cardNumber="+numeroCartao+"&registration=16001000");
+                    if(result!=null){
+
+
+                    }
+                    else{
+                        throw new Exception("Impossivel capturar resultado.");
+                    }
+                } catch (Exception e) {
+                    Log.i("Erro","TaskGETListaCartoes -- Sem conexão com o servidor.");
+                }
             }
         });
 
@@ -119,20 +139,11 @@ public class Faturas extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_minhaConta) {
-            Intent minhaConta = new Intent(Faturas.this, MinhaConta.class);
-            startActivity(minhaConta);
-
-        } else if (id == R.id.nav_bloquear) {
+        if (id == R.id.nav_bloquear) {
 
             AlertDialog dialog = builder.create();
             dialog.show();
-
-        } else if (id == R.id.nav_cartoes) {
-            Intent retorno = new Intent(Faturas.this, Cartao.class);
-            startActivity(retorno);
-            this.finish();
-        } else if (id == R.id.nav_sair){
+        }else if (id == R.id.nav_sair){
             System.exit(0);
         }
 
@@ -141,12 +152,15 @@ public class Faturas extends AppCompatActivity
         return true;
     }
 
-    /*private void createFakeCars() {
-        for(int i = 0; i < 2; i ++) {
-            ListaCartoes sampleCar = new ListaCartoes();
-            sampleCar.setNome("Nome " + i);
-            sampleCar.setConta("Conta: " + i);
-            cards.add(sampleCar);
-        }
-    }*/
+
+    @Override
+    public void ftCallback(List<ListaFaturas> listaDeFatura) {
+        rvFaturas.setAdapter(new AdapterFaturas(listaDeFatura,this, new AdapterFaturas.OnItemClickListener() {
+            @Override
+            public void onItemClick(ListaFaturas item) {
+                Intent Lista = new Intent(Faturas.this, DetalheFatura.class);
+                startActivity(Lista);
+            }
+        }));
+    }
 }
