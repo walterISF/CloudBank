@@ -70,7 +70,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="34016ea36e12ba183869b6ef372666b6a8986ddc">
+        sha1="de8e9cabf9371be9ad0c73d98ad7f35b1d0c7b16">
         <dex dex="/Users/aluno/Desktop/CloudBank/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_23a5a5dde87ce992ae037f9936f14310e6b3a038/classes.dex" />
     </item>
     <item
@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="19982d45348d10e6b71f7c901da8693fb257199c">
+        sha1="7f8a6d57617e44fffaeb46e9b6d01d3f082ff9de">
         <dex dex="/Users/aluno/Desktop/CloudBank/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_dbba11fd3345e574b3d2de5fbfcb9d0916f1a0d7/classes.dex" />
     </item>
     <item

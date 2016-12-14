@@ -38,8 +38,7 @@ public class Cartao extends AppCompatActivity implements CartaoCallback {
             rvCartoes.setHasFixedSize(true);
         }
         else{
-            id = "1";
-            nomeUsuario = "Allan Guerra";
+
         }
 
 
@@ -60,6 +59,8 @@ public class Cartao extends AppCompatActivity implements CartaoCallback {
                 Bundle bundle = new Bundle();
                 numero = item.getNumero();
                 bundle.putString("numero",numero);
+                bundle.putString("id",id);
+                bundle.putString("nome",nomeUsuario);
                 Lista.putExtras(bundle);
                 startActivity(Lista);
                 finish();

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -36,8 +37,12 @@ public class AdapterFaturas extends RecyclerView.Adapter<AdapterFaturas.ViewHold
     public void onBindViewHolder(AdapterFaturas.ViewHolder holder, int position) {
         holder.bind(faturas.get(position), listener);
         ListaFaturas fatura = faturas.get(position);
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.format(fatura.getValor());
+        String ValorCompra = "R$ " + df.format(fatura.getValor());
         holder.tvLocal.setText(fatura.getPlace());
-        holder.tvPreco.setText(fatura.getValor().toString());
+        holder.tvPreco.setText(ValorCompra);
 
     }
 

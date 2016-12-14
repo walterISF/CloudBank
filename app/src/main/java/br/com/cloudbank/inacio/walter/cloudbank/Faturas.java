@@ -32,7 +32,7 @@ public class Faturas extends AppCompatActivity
     private RecyclerView rvFaturas;
     private String URLListaFaturas;
     private TaskGetListaFaturas getListaFaturas;
-    private String numeroCartao;
+    private String numeroCartao, nomeRetorno, idRetorno;
     private HttpHandler httpHandler;
 
     @Override
@@ -54,8 +54,17 @@ public class Faturas extends AppCompatActivity
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        numeroCartao = bundle.getString("numero");
 
+        if(bundle != null) {
+            numeroCartao = bundle.getString("numero");
+            idRetorno = bundle.getString("id");
+            nomeRetorno = bundle.getString("nome");
+        }
+        else {
+            numeroCartao = "4055520000335412";
+            idRetorno = "1";
+            nomeRetorno = "Allan Guerra";
+        }
 
         rvFaturas = (RecyclerView) findViewById(R.id.rvFaturas);
         rvFaturas.setLayoutManager(new LinearLayoutManager(this));
@@ -145,6 +154,14 @@ public class Faturas extends AppCompatActivity
             dialog.show();
         }else if (id == R.id.nav_sair){
             System.exit(0);
+        }else if(id == R.id.nav_cartao){
+            Intent voltar = new Intent(Faturas.this,Cartao.class);
+            Bundle numCard = new Bundle();
+            numCard.putString("numero",numeroCartao);
+            numCard.putString("id",idRetorno);
+            numCard.putString("nome",nomeRetorno);
+            voltar.putExtras(numCard);
+            startActivity(voltar);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -159,6 +176,15 @@ public class Faturas extends AppCompatActivity
             @Override
             public void onItemClick(ListaFaturas item) {
                 Intent Lista = new Intent(Faturas.this, DetalheFatura.class);
+                Bundle compras = new Bundle();
+                compras.putString("latitude",item.getLatitude().toString());
+                compras.putString("longitude",item.getLongitude().toString());
+                compras.putString("local",item.getPlace().toString());
+                compras.putString("valor",item.getValor().toString());
+                compras.putString("id", idRetorno);
+                compras.putString("numero", numeroCartao);
+                compras.putString("nome", nomeRetorno);
+                Lista.putExtras(compras);
                 startActivity(Lista);
             }
         }));
