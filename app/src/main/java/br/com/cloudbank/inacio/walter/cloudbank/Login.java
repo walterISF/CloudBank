@@ -34,12 +34,15 @@ public class Login extends AppCompatActivity implements LoginCallback {
             @Override
             public void onClick(View view) {
 
-                strEmail = "allangera@hotmail.com";//email.getText().toString();
-                strSenha = "Aln3105";//senha.getText().toString();
+                strEmail = email.getText().toString();
+                strSenha = senha.getText().toString();
 
                 taskGetLogin = new TaskGetLogin(URLLogin+"?email="+strEmail+"&senha="+strSenha,Login.this,Login.this);
 
-                taskGetLogin.execute();
+                if(taskGetLogin == null)
+                    Toast.makeText(context, "Email ou senha estão incorretos.", Toast.LENGTH_SHORT).show();
+                else
+                    taskGetLogin.execute();
 
 
             }
@@ -48,28 +51,28 @@ public class Login extends AppCompatActivity implements LoginCallback {
     }
 
     @Override
-    public void lgCallback(JSONObject json) throws JSONException {
+    public void lgCallback(JSONObject json) throws Exception {
 
         if(json!=null){
 
-        if(strEmail.equals(json.getString("email")) &&strSenha.equals(json.getString("senha"))){
-            Intent telaCartao = new Intent(Login.this, Cartao.class);
-            String id,nome;
-            id = json.getString("id");
-            nome = json.getString("nome");
-            Bundle bundle = new Bundle();
-            bundle.putString("id",id);
-            bundle.putString("nome",nome);
-            telaCartao.putExtras(bundle);
-            startActivity(telaCartao);
-            this.finish();
-        }
-        else{
-            Toast.makeText(context, "Usuario e senha Invalidos", Toast.LENGTH_SHORT).show();
-        }
+            if(strEmail.equals(json.getString("email")) &&strSenha.equals(json.getString("senha"))){
+                Intent telaCartao = new Intent(Login.this, Cartao.class);
+                String id,nome;
+                id = json.getString("id");
+                nome = json.getString("nome");
+                Bundle bundle = new Bundle();
+                bundle.putString("id",id);
+                bundle.putString("nome",nome);
+                telaCartao.putExtras(bundle);
+                startActivity(telaCartao);
+                this.finish();
+            }
+            else{
+                Toast.makeText(context, "Usuario e senha Invalidos", Toast.LENGTH_SHORT).show();
+            }
 
-    }else{
-            throw null;
+        }else{
+            throw new Exception ("Erro ao validar usuario.");
         }
     }
 

@@ -57,6 +57,8 @@ public class TaskGetLogin extends AsyncTask<Void, Void, JSONObject> {
             this.callback.lgCallback(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

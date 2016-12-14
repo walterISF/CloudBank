@@ -15,8 +15,8 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by aluno on 07/12/16.
  */
 public class HttpHandler {
-    private final int readTimeOut = 15000;
-    private final int connectionTimeOut = 15000;
+    private final int readTimeOut = 1500;
+    private final int connectionTimeOut = 1500;
     private String response;
 
     public String doHttpRequest(String URLRequest)throws Exception{
@@ -33,18 +33,11 @@ public class HttpHandler {
             conn.connect();
 
             if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
-                cont=0;
                 InputStream is = conn.getInputStream();
                 this.response = getJSONFromInputStream(is);
             }
             else{
-                if(cont<3){
-                    cont++;
-                    doHttpRequest(URLRequest);
-                }
-                else{
-                    throw new Exception("Error, Impossible to connect with the URL");
-                }
+                return null;
             }
             return response;
         }
@@ -53,7 +46,6 @@ public class HttpHandler {
                 cont++;
                 System.out.println("Response Code : " + e.getMessage());
                 doHttpRequest(URLRequest);
-
             }
             else{
                 throw new Exception("Error, Impossible to establish connection");

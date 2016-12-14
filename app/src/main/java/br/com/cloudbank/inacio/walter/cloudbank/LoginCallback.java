@@ -7,5 +7,5 @@ import org.json.JSONObject;
  * Created by Kelly on 11/12/2016.
  */
 public interface LoginCallback {
-    public void lgCallback(JSONObject json) throws JSONException;
+    public void lgCallback(JSONObject json) throws Exception;
 }
